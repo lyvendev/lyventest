@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lyven.dev | Portfolio</title>
   <style>
-    /* (ton CSS inchangé) */
     * {
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
@@ -23,6 +22,7 @@
       align-items: center;
       color: #fff;
     }
+
     .change-bg {
       position: absolute;
       top: 20px;
@@ -42,6 +42,7 @@
       box-shadow: 0 0 20px rgba(88, 101, 242, 0.7);
       transform: scale(1.05);
     }
+
     .card {
       background: rgba(20, 20, 35, 0.8);
       backdrop-filter: blur(15px);
@@ -63,6 +64,7 @@
       pointer-events: auto;
       transform: translateY(0);
     }
+
     .profile-container {
       position: relative;
       display: inline-block;
@@ -84,6 +86,7 @@
       0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
       50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
     }
+
     img.profile {
       position: relative;
       z-index: 1;
@@ -94,6 +97,7 @@
       border: 3px solid #5865f2;
       box-shadow: 0 0 25px rgba(80, 90, 255, 0.4);
     }
+
     h1 {
       font-size: 2rem;
       margin: 15px 0 5px;
@@ -103,6 +107,7 @@
       font-size: 0.95rem;
       margin-bottom: 25px;
     }
+
     .socials {
       display: flex;
       justify-content: center;
@@ -123,6 +128,7 @@
       transform: scale(1.15);
       box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
     }
+
     .btn, .back-btn {
       display: inline-block;
       background: linear-gradient(90deg, #5865f2, #7289da);
@@ -147,6 +153,7 @@
       background: #5865f2;
       color: #fff;
     }
+
     .experience {
       display: flex;
       flex-direction: column;
@@ -199,7 +206,7 @@
   <div class="card visible" id="profileCard">
     <div class="profile-container">
       <div class="glow"></div>
-      <img class="profile" id="profileImage" src="https://i.postimg.cc/Rh0ys0sj/1fca7e3c4223baeb5142f2e254ee8fc0.png" alt="photo de profil">
+      <img class="profile" src="https://i.postimg.cc/Rh0ys0sj/1fca7e3c4223baeb5142f2e254ee8fc0.png" alt="photo de profil">
     </div>
 
     <h1>lyven.dev</h1>
@@ -219,8 +226,10 @@
     <h1><i class="fa-solid fa-briefcase"></i> Expériences</h1>
 
     <div class="experience">
+
+      <!-- Tu peux modifier le lien image (logo) ici : -->
       <a href="https://example.com" class="exp-card" target="_blank">
-        <img src="https://via.placeholder.com/80" alt="logo">
+        <img src="https://i.postimg.cc/281s082g/6d583fe93a31484333646963a1d88f1f.png" alt="logo expérience 1">
         <div class="exp-info">
           <h3>Admin – @Marius</h3>
           <p>Gestion de la modération et de la communauté.</p>
@@ -228,7 +237,7 @@
       </a>
 
       <a href="https://example.com" class="exp-card" target="_blank">
-        <img src="https://via.placeholder.com/80" alt="logo">
+        <img src="https://i.postimg.cc/VLTGfBgG/1dd80582c0d37a0663d7acdfd5b8a861.webp" alt="logo expérience 2">
         <div class="exp-info">
           <h3>Admin – @ElJuGa</h3>
           <p>Coordination et supervision des équipes.</p>
@@ -236,7 +245,7 @@
       </a>
 
       <a href="https://example.com" class="exp-card" target="_blank">
-        <img src="https://via.placeholder.com/80" alt="logo">
+        <img src="https://i.postimg.cc/bwkTzXs2/pdp-staizix2.jpg" alt="logo expérience 3">
         <div class="exp-info">
           <h3>Resp – @Staizix</h3>
           <p>Supervision et gestion du staff.</p>
@@ -244,19 +253,19 @@
       </a>
 
       <a href="https://example.com" class="exp-card" target="_blank">
-        <img src="https://via.placeholder.com/80" alt="logo">
+        <img src="https://i.postimg.cc/SxhZYN0N/a-3820a18d533adf5e6965e1a9491a3de3.gif" alt="logo expérience 4">
         <div class="exp-info">
           <h3>Mod – @Café Français</h3>
           <p>Support technique et aide au staff.</p>
         </div>
       </a>
+
     </div>
 
     <div class="back-btn" id="backBtn"><i class="fa-solid fa-arrow-left"></i> Retour</div>
   </div>
 
   <script>
-    // Navigation cartes
     const profileCard = document.getElementById("profileCard");
     const experienceCard = document.getElementById("experienceCard");
     const showExp = document.getElementById("showExp");
@@ -280,7 +289,6 @@
       }, 400);
     });
 
-    // Fonds aléatoires
     const backgrounds = [
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
       "https://images.unsplash.com/photo-1505761671935-60b3a7427bad",
