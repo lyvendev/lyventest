@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lyven.dev</title>
+  <style>
+    /* === STYLES GÉNÉRAUX === */
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0a0a12, #000);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* Effet de fond animé */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(80,80,255,0.2), transparent 70%);
+      animation: float 10s ease-in-out infinite alternate;
+      border-radius: 50%;
+      filter: blur(120px);
+    }
+
+    @keyframes float {
+      from { transform: translate(-100px, -50px); }
+      to { transform: translate(100px, 50px); }
+    }
+
+    /* === CARTES === */
+    .card {
+      background: rgba(20, 20, 35, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      box-shadow: 0 0 25px rgba(120, 120, 255, 0.15);
+      text-align: center;
+      padding: 40px;
+      width: 380px;
+      transition: all 0.6s ease;
+      position: absolute;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(40px);
+    }
+
+    .visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* === PROFIL === */
+    .profile-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(80, 90, 255, 0.7), transparent 70%);
+      filter: blur(30px);
+      z-index: 0;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    img.profile {
+      position: relative;
+      z-index: 1;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #5865f2;
+      box-shadow: 0 0 25px rgba(80, 90, 255, 0.4);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 15px 0 5px;
+    }
+
+    p {
+      color: #b6b6ff;
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+    }
+
+    /* === ICONES SOCIALES === */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .socials a {
+      background: #16162a;
+      color: #8c8cff;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: #5865f2;
+      color: #fff;
+      transform: scale(1.15);
+      box-shadow: 0 0 15px rgba(88, 101, 242, 0.7);
+    }
+
+    /* === BOUTONS === */
+    .btn, .back-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #5865f2, #7289da);
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover, .back-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(114,137,218,0.5);
+    }
+
+    .back-btn {
+      background: #16162a;
+      color: #a8aaff;
+      margin-top: 25px;
+      border: 1px solid #35355f;
+    }
+
+    .back-btn:hover {
+      background: #5865f2;
+      color: #fff;
+    }
+
+    /* === EXPÉRIENCES === */
+    .experience {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .exp-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(30, 30, 55, 0.8);
+      border-radius: 15px;
+      padding: 15px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .exp-card:hover {
+      background: rgba(50, 50, 90, 0.9);
+      transform: translateY(-4px);
+      box-shadow: 0 0 10px rgba(114,137,218,0.3);
+    }
+
+    .exp-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #5865f2;
+    }
+
+    .exp-info h3 {
+      margin: 0;
+      color: #fff;
+    }
+
+    .exp-info p {
+      margin: 3px 0 0;
+      color: #b6b6ff;
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2e0e6d66a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- === PAGE PROFIL === -->
+  <div class="card visible" id="profileCard">
+    <div class="profile-container">
+      <div class="glow"></div>
+      <img class="profile" src="https://via.placeholder.com/150" alt="photo de profil">
+    </div>
+    <h1>lyven.dev</h1>
+    <p>Moderator & Admin | Work at @Staizix & others</p>
+
+    <div class="socials">
+      <a href="#"><i class="fa-brands fa-discord"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-spotify"></i></a>
+      <a href="#"><i class="fa-brands fa-github"></i></a>
+    </div>
+
+    <a class="btn" id="showExp"><i class="fa-solid fa-briefcase"></i> Expériences</a>
+  </div>
+
+  <!-- === PAGE EXPÉRIENCES === -->
+  <div class="card hidden" id="experienceCard">
+    <h1><i class="fa-solid fa-briefcase"></i> Expériences</h1>
+
+    <div class="experience">
+      <a href="https://example.com" class="exp-card" target="_blank">
+        <img src="https://via.placeholder.com/50" alt="logo">
+        <div class="exp-info">
+          <h3>Admin – @Staizix</h3>
+          <p>Gestion de la modération et de la communauté.</p>
+        </div>
+      </a>
+
+      <a href="https://example.com" class="exp-card" target="_blank">
+        <img src="https://via.placeholder.com/50" alt="logo">
+        <div class="exp-info">
+          <h3>Admin – @ElJuGa</h3>
+          <p>Coordination et supervision des équipes.</p>
+        </div>
+      </a>
+
+      <a href="https://example.com" class="exp-card" target="_blank">
+        <img src="https://via.placeholder.com/50" alt="logo">
+        <div class="exp-info">
+          <h3>Resp – @The Corbeau</h3>
+          <p>Supervision et gestion du staff.</p>
+        </div>
+      </a>
+
+      <a href="https://example.com" class="exp-card" target="_blank">
+        <img src="https://via.placeholder.com/50" alt="logo">
+        <div class="exp-info">
+          <h3>Helper – @Nanass</h3>
+          <p>Support technique et aide au staff.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="back-btn" id="backBtn"><i class="fa-solid fa-arrow-left"></i> Retour</div>
+  </div>
+
+  <!-- === SCRIPT JS === -->
+  <script>
+    const profileCard = document.getElementById("profileCard");
+    const experienceCard = document.getElementById("experienceCard");
+    const showExp = document.getElementById("showExp");
+    const backBtn = document.getElementById("backBtn");
+
+    showExp.addEventListener("click", () => {
+      profileCard.classList.remove("visible");
+      profileCard.classList.add("hidden");
+      setTimeout(() => {
+        experienceCard.classList.remove("hidden");
+        experienceCard.classList.add("visible");
+      }, 400);
+    });
+
+    backBtn.addEventListener("click", () => {
+      experienceCard.classList.remove("visible");
+      experienceCard.classList.add("hidden");
+      setTimeout(() => {
+        profileCard.classList.remove("hidden");
+        profileCard.classList.add("visible");
+      }, 400);
+    });
+  </script>
+</body>
+</html>
